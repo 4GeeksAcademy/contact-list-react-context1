@@ -14,7 +14,7 @@ const AddContact = () => {
         event.preventDefault();
 
         if (newContact) {
-            postTarea()
+            postContacto()
             setNewContact('');
         }
     };
@@ -78,23 +78,6 @@ const AddContact = () => {
 
     }
 
-    function deleteContacto(id) {
-        fetch(`https://playground.4geeks.com/contact/agendas/pablocirus89/contacts/${id}`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json"
-            }
-        })
-            .then((resp) => {
-
-                console.log(resp)
-                if (resp.status === 204) { listarContactos() }
-                return resp.json()
-            })
-
-            .then((data) => console.log(data))
-            .catch((error) => console.log(error))
-    }
 
     useEffect(() => {
         crearUsuario()
@@ -112,42 +95,29 @@ const AddContact = () => {
                     <fieldset disabled>
                         <legend m-auto>Add new contact</legend>
                         <div className="mb-3">
-                            <label for="disabledTextInput" className="form-label">Full name</label>
-                            <input type="text" id="disabledTextInput" className="form-control" placeholder="Full name input" />
+                            <label htmlFor="disabledTextInput" className="form-label">Full name</label>
+                            <input className="form-control" type="text" id="floatingInputValue" placeholder="Full name" value={newContact} onChange={handleChange} />
                         </div>
                         <div className="mb-3">
-                            <label for="disabledTextInput" className="form-label">Email</label>
-                            <input type="text" id="disabledTextInput" className="form-control" placeholder="Full name input" />
+                            <label htmlFor="disabledTextInput" className="form-label">Email</label>
+                            <input className="form-control" type="text" id="floatingInputValue" placeholder="Email" value={newContact} onChange={handleChange} />
                         </div>
                         <div className="mb-3">
-                            <label for="disabledTextInput" className="form-label">Phone</label>
-                            <input type="text" id="disabledTextInput" className="form-control" placeholder="Full name input" />
+                            <label htmlFor="disabledTextInput" className="form-label">Phone</label>
+                            <input className="form-control" type="text" id="floatingInputValue" placeholder="Phone" value={newContact} onChange={handleChange} />
                         </div>
                         <div className="mb-3">
-                            <label for="disabledTextInput" className="form-label">Adress</label>
-                            <input type="text" id="disabledTextInput" className="form-control" placeholder="Full name input" />
+                            <label htmlFor="disabledTextInput" className="form-label">Adress</label>
+                            <input className="form-control" type="text" id="floatingInputValue" placeholder="Address" value={newContact} onChange={handleChange} />
                         </div>
                         <Link to="/" mx-2>Or back to contact</Link>
 
                         <button type="submit" className="btn btn-primary d-flex m-auto">Save</button>
                     </fieldset>
                 </form>
-                {contacts.length > 0 ? (
-                    <ul className="list-group">
-                        {contacts.map((contact, index) => (
-                            <li className="list-group-item item-li fw-semibold text-center" key={index}>
-                                {contact.label}
-
-                                <button type="button" className="btn-close float-end" aria-label="Close" onClick={() => deleteContacto(contact.id)}>️</button>
-                            </li>
-                        ))}
-                    </ul>
-                ) : ("")}
 
             </div>
         </div>
-
-        /*   */
 
     )
 
