@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from "react"
 import Card from "../component/card.jsx";
 import { Context } from "../store/appContext.js";
 
+
 export const Home = () => {
 
 	const { store, actions } = useContext(Context)
@@ -15,8 +16,7 @@ export const Home = () => {
 		<div className="conatiner-fluid p-4 mx-3 row g-3">
 
 			<div className="col-sm-5">
-				<h1 className="text-center text-secondary text-opacity-75 fw-bolder">Contacts</h1>
-				{store.contact.length > 0 ? (
+				{store.contacts.length > 0 ? (
 					<ul className="list-group">
 
 						{store.contacts.map((contact, index) => (
@@ -27,8 +27,7 @@ export const Home = () => {
 								name={contact.name}
 								phone={contact.phone}
 								email={contact.email}	
-								address={contact.address}/>
-
+								address={contact.address}/>								
 						))}
 					</ul>
 				) : ("")}

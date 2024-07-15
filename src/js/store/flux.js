@@ -10,7 +10,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 
 			crearUsuario: () => {
-				fetch('https://playground.4geeks.com/todo/users/pablocirus89', {
+				fetch('https://playground.4geeks.com/contact/agendas/pablocirus89', {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json"
@@ -23,16 +23,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 			listarContactos: () => {
 				fetch('https://playground.4geeks.com/contact/agendas/pablocirus89/contacts', {
-					method: "POST",
+					method: "GET",
 					headers: {
 						"Content-Type": "application/json"
 					}
 				})
 					.then((resp) => {
-						console.log(resp.status)
-						 if (resp.status == 404) {
-							crearUsuario()
-						}
+						console.log(resp)
+						/*  if (resp.status ==) {
+							listarContactos()
+						} */
 						return resp.json()
 					})
 					.then((data) => setStore({ contacts: data.contacts }))
@@ -42,15 +42,15 @@ const getState = ({ getStore, getActions, setStore }) => {
 			postContacto: (name, phone, email, address) => {
 				const store = getStore()
 				fetch('https://playground.4geeks.com/contact/agendas/pablocirus89/contacts', {
-					method: "GET",
+					method: "POST",
 					headers: {
 						"Content-Type": "application/json"
 					},
 					body: JSON.stringify({
-						"name": "name",
-						"phone": "phone",
-						"email": "email",
-						"address": "address",
+						"name": name,
+						"phone": phone,
+						"email": email,
+						"address": address,
 					}),
 				})
 					.then((resp) => {
@@ -61,29 +61,35 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.then((data) => {
 						if (data) {
-							setStore({ contacts: store.contacts.concat(data)})
+							setStore({ contacts: store.contacts.concat(data) })
 						}
 					})
 					.catch((error) => console.log(error))
 			},
 
-			deleteContacto: (id) => {
-				fetch(`https://playground.4geeks.com/contact/agendas/pablocirus89/contacts/${id}`, {
+			/* deleteContacto: (id) => {
+				const store = getStore()
+				fetch(`https://playground.4geeks.com/contact/agendas/pablocirus89/contacts/${id.id}`, {
 					method: "DELETE",
 					headers: {
 						"Content-Type": "application/json"
 					}
 				})
 					.then((resp) => {
-
 						console.log(resp)
-						if (resp.status === 204) { listarContactos() }
-						return resp.json()
+						if (resp.ok) { return resp; 
+							const newArray
+						}
 					})
-					.then((data) => console.log(data))
+					.then((data) => {
+						if(data) {
+							const newArray = store.contacts.filter(item => item.id != id)
+							setStore({listarContactos: newArray})}
+
+					})
 					.catch((error) => console.log(error))
 			},
-
+ */
 
 
 		}

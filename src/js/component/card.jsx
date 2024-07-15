@@ -1,7 +1,13 @@
-import React from "react";
+import React, {useContext, useEffect} from "react";
+import { Context } from "../store/appContext.js";
+import { EditModal } from "./editModal.jsx";
 
-
-function Card({ name, phone, email, address }) {
+function Card({ name, phone, email, address, id }) {
+    const {actions} = useContext(Context)
+    
+	useEffect(() => {
+		actions.deleteContacto()
+	}, [])
 
     return (
         <div className="card mb-3" style={{ maxWidth: "540px" }}>
@@ -15,6 +21,16 @@ function Card({ name, phone, email, address }) {
                         <p className="card-text">{phone}</p>
                         <p className="card-text"><small className="text-body-secondary">{email}</small></p>
                         <p className="card-text"><small className="text-body-secondary">{address}</small></p>
+
+                        <div>
+                            <button type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target={"#editModal-" + id}>
+                                <i className="fa fa-pen"></i>
+                            </button>
+                        </div>
+                        <EditModal id={id} />
+                        <button className="btn btn-outline-danger" onClick={() => actions.deleteContacto(id)}>
+                            <i className="fa fa-trash"></i>
+                        </button>
                     </div>
                 </div>
             </div>
