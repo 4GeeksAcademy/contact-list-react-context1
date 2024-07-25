@@ -8,7 +8,7 @@ import { Single } from "./views/single";
 import AddContact from "./views/addcontact.jsx";
 import injectContext from "./store/appContext";
 import Card from "./component/card.jsx";
-import { EditModal } from "./views/editModal.jsx";
+import { Modal } from "./views/modal.jsx";
 
 import { Navbar } from "./component/navbar";
 import { Footer } from "./component/footer";
@@ -28,7 +28,7 @@ const Layout = () => {
 						<Route path="/" element={<Home />} />
 						<Route path="/add-contact" element={<AddContact />} />
 						<Route path="/card" element={<Card />} />
-						<Route path="/edit-modal" element={<EditModal />} />
+						<Route path="/modal" element={<Modal />} />
 						<Route path="/demo" element={<Demo />} />
 						<Route path="/single/:theid" element={<Single />} />
 						<Route path="*" element={<h1>Not found!</h1>} />

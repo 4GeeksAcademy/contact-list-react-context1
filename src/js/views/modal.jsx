@@ -1,17 +1,17 @@
 import React, {useContext, useEffect} from "react";
 import { Context } from "../store/appContext";
 
-export const EditModal = (id) => {
+export const Modal = (id) => {
 
     const { store, actions } = useContext(Context)
 
 	useEffect(() => {
-		actions.deleteContactos()
+		actions.deleteContacto()
 	}, [])
 
 
     return (
-        <div className="modal" id={"editModal"+id.id} tabindex="-1">
+        <div className="modal" id={"Modal"+id} tabindex="-1">
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">
@@ -23,7 +23,7 @@ export const EditModal = (id) => {
                     </div>
                     <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" className="btn btn-primary">Delete</button>
+                        <button onClick={() => deleteContacto(contact.id)}>Delete</button>
                     </div>
                 </div>
             </div>

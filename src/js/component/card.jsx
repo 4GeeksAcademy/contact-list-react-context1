@@ -1,6 +1,6 @@
 import React, {useContext, useEffect} from "react";
 import { Context } from "../store/appContext.js";
-import { EditModal } from "./editModal.jsx";
+import { Modal } from "../views/modal.jsx";
 
 function Card({ name, phone, email, address, id }) {
     const {actions} = useContext(Context)
@@ -23,11 +23,11 @@ function Card({ name, phone, email, address, id }) {
                         <p className="card-text"><small className="text-body-secondary">{address}</small></p>
 
                         <div>
-                            <button type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target={"#editModal-" + id}>
+                            <button type="button" className="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target={"#Modal-"+id}>
                                 <i className="fa fa-pen"></i>
                             </button>
                         </div>
-                        <EditModal id={id} />
+                        <Modal id={id} />
                         <button className="btn btn-outline-danger" onClick={() => actions.deleteContacto(id)}>
                             <i className="fa fa-trash"></i>
                         </button>

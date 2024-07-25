@@ -21,6 +21,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch((error) => console.log(error))
 			},
 
+
 			listarContactos: () => {
 				fetch('https://playground.4geeks.com/contact/agendas/pablocirus89/contacts', {
 					method: "GET",
@@ -29,12 +30,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				})
 					.then((resp) => {
-						console.log(resp)
-						/*  if (resp.status ==) {
-							listarContactos()
-						} */
-						return resp.json()
-					})
+            if (resp.ok) {
+                return resp.json();
+            }
+            throw new Error('Network response was not ok.');
+        })
 					.then((data) => setStore({ contacts: data.contacts }))
 					.catch((error) => console.log(error))
 			},
@@ -67,29 +67,27 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.catch((error) => console.log(error))
 			},
 
-			/* deleteContacto: (id) => {
+			deleteContacto: (id) => {
 				const store = getStore()
-				fetch(`https://playground.4geeks.com/contact/agendas/pablocirus89/contacts/${id.id}`, {
+				fetch(`https://playground.4geeks.com/contact/agendas/pablocirus89/contacts/${id}`, {
 					method: "DELETE",
 					headers: {
 						"Content-Type": "application/json"
 					}
 				})
-					.then((resp) => {
-						console.log(resp)
-						if (resp.ok) { return resp; 
-							const newArray
-						}
-					})
-					.then((data) => {
-						if(data) {
-							const newArray = store.contacts.filter(item => item.id != id)
-							setStore({listarContactos: newArray})}
-
-					})
-					.catch((error) => console.log(error))
+				.then((resp) => {
+					if (resp.ok) {
+						// Filtrar el array de contactos para eliminar el contacto con el ID proporcionado
+						const newArray = contacts.filter(item => item.id !== id);
+						// Actualizar el estado con el nuevo array de contactos
+						setContacts(newArray);
+						return resp.json();
+					}
+					throw new Error('Network response was not ok.');
+				})
+				.catch((error) => console.log(error));
 			},
- */
+
 
 
 		}
