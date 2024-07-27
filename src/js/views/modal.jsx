@@ -11,7 +11,7 @@ export const Modal = (id) => {
 
 
     return (
-        <div className="modal" id={"Modal"+id} tabindex="-1">
+        <div className="modal" id={"Modal"+id} tabIndex="-1">
             <div className="modal-dialog">
                 <div className="modal-content">
                     <div className="modal-header">

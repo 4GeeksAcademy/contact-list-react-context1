@@ -30,11 +30,11 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				})
 					.then((resp) => {
-            if (resp.ok) {
-                return resp.json();
-            }
-            throw new Error('Network response was not ok.');
-        })
+						if (resp.ok) {
+							return resp.json();
+						}
+						throw new Error('Network response was not ok.');
+					})
 					.then((data) => setStore({ contacts: data.contacts }))
 					.catch((error) => console.log(error))
 			},
@@ -56,12 +56,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then((resp) => {
 						if (resp.ok) {
 							return resp.json()
+						} else {
+							getActions().crearUsuario()
+							return resp.json()
 						}
-						return null
+						/* return null */
 					})
 					.then((data) => {
 						if (data) {
-							setStore({ contacts: store.contacts.concat(data) })
+							/* setStore({ contacts: store.contacts.concat(data) }) */
+							console.log(data);
 						}
 					})
 					.catch((error) => console.log(error))
@@ -75,18 +79,49 @@ const getState = ({ getStore, getActions, setStore }) => {
 						"Content-Type": "application/json"
 					}
 				})
-				.then((resp) => {
-					if (resp.ok) {
-						// Filtrar el array de contactos para eliminar el contacto con el ID proporcionado
-						const newArray = contacts.filter(item => item.id !== id);
-						// Actualizar el estado con el nuevo array de contactos
-						setContacts(newArray);
-						return resp.json();
-					}
-					throw new Error('Network response was not ok.');
-				})
-				.catch((error) => console.log(error));
+					.then((resp) => {
+						if (resp.ok) {
+							// Filtrar el array de contactos para eliminar el contacto con el ID proporcionado
+							const newArray = contacts.filter(item => item.id !== id);
+							// Actualizar el estado con el nuevo array de contactos
+							setContacts(newArray);
+							return resp.json();
+						}
+						throw new Error('Network response was not ok.');
+					})
+					.catch((error) => console.log(error));
+					getActions().listarContactos()
 			},
+
+			editarContacto: (name, phone, email, address, id) => {
+				const store = getStore()
+				fetch(`https://playground.4geeks.com/contact/agendas/pablocirus89/contacts/${id}`, {
+					method: "PUT",
+					headers: {
+						"Content-Type": "application/json"
+					},
+					body: JSON.stringify({
+						"name": name,
+						"phone": phone,
+						"email": email,
+						"address": address,
+					}),
+				})
+					.then((resp) => {
+						if (resp.ok) {
+							return resp.json()
+						} 
+					})
+					.then((data) => {
+						if (data) {
+							/* setStore({ contacts: store.contacts.concat(data) }) */
+							console.log(data);
+						}
+					})
+					.catch((error) => console.log(error))
+					getActions().listarContactos()
+			},
+
 
 
 

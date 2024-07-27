@@ -6,9 +6,9 @@ import { Link, useNavigate } from "react-router-dom";
 
 const AddContact = () => {
     const [name, setName] = useState("")
-    const [email, setEmail] = useState([])
-    const [phone, setPhone] = useState([])
-    const [address, setAddress] = useState([])
+    const [email, setEmail] = useState("")
+    const [phone, setPhone] = useState("")
+    const [address, setAddress] = useState("")
 
 
     const { actions } = useContext(Context)
@@ -32,9 +32,8 @@ const AddContact = () => {
 
     return (
 
-        <div className="conatiner-fluid p-4 mx-3 row g-3">
-
-            <div className="col-sm-5">
+        <div className="conatiner-fluid p-4 position-relative">
+            <div className="col-md-5">
 
                 <form className="form-floating" onSubmit={handleSubmit}>
                     <fieldset>

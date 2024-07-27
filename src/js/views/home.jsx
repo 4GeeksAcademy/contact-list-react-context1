@@ -1,11 +1,16 @@
-import React, { useEffect, useContext } from "react"
+import React, { useEffect, useContext, useState } from "react"
 import Card from "../component/card.jsx";
 import { Context } from "../store/appContext.js";
+import { ModalEditar } from "../component/modal_editar.jsx";
 
 
 export const Home = () => {
 
 	const { store, actions } = useContext(Context)
+	const [edit, setEdit]=useState({
+		showModal: false, 
+		item: {}
+	})
 
 	useEffect(() => {
 		actions.listarContactos()
@@ -13,9 +18,9 @@ export const Home = () => {
 
 
 	return (
-		<div className="conatiner-fluid p-4 mx-3 row g-3">
+		<div className="conatiner-fluid p-4 m-auto row g-3">
 
-			<div className="col-sm-5">
+			<div className="col-m-3">
 				{store.contacts.length > 0 ? (
 					<ul className="list-group">
 
@@ -27,11 +32,17 @@ export const Home = () => {
 								name={contact.name}
 								phone={contact.phone}
 								email={contact.email}	
-								address={contact.address}/>								
+								address={contact.address}
+								onEdit={()=>setEdit({showModal: true, item: contact})}
+								/>								
 						))}
 					</ul>
 				) : ("")}
 			</div>
+			<ModalEditar
+			show= {edit.showModal}
+			item= {edit.item}
+			/>
 		</div>
 	);
 }
