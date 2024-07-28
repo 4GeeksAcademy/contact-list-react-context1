@@ -33,30 +33,31 @@ const AddContact = () => {
     return (
 
         <div className="conatiner-fluid p-4 position-relative">
-            <div className="col-md-5">
+            <div className="d-grid gap-2 col-6 mx-auto">
 
                 <form className="form-floating" onSubmit={handleSubmit}>
                     <fieldset>
-                        <legend className="m-auto">Add new contact</legend>
+                        <h2 className="m-auto text-center">Add new contact</h2>
                         <div className="mb-3">
-                            <label htmlFor="disabledTextInput" className="form-label">Full name</label>
+                            <h6 htmlFor="disabledTextInput" className="form-label">Full name</h6>
                             <input className="form-control" type="text" id="floatingInputValue" placeholder="Full name" value={name} onChange={(e) => setName(e.target.value)} />
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="disabledTextInput" className="form-label">Phone</label>
+                            <h6 htmlFor="disabledTextInput" className="form-label">Phone</h6>
                             <input className="form-control" type="text" id="floatingInputValue" placeholder="Phone" value={phone} onChange={(e) => setPhone(e.target.value)} />
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="disabledTextInput" className="form-label">Email</label>
+                            <h6 htmlFor="disabledTextInput" className="form-label">Email</h6>
                             <input className="form-control" type="text" id="floatingInputValue" placeholder="Email" value={email} onChange={(e) => setEmail(e.target.value)} />
                         </div>
                         <div className="mb-3">
-                            <label htmlFor="disabledTextInput" className="form-label">Adress</label>
+                            <h6 htmlFor="disabledTextInput" className="form-label">Address</h6>
                             <input className="form-control" type="text" id="floatingInputValue" placeholder="Address" value={address} onChange={(e) => setAddress(e.target.value)} />
                         </div>
-                        <Link to="/" className="mx-2">Or back to contact</Link>
-
-                        <button type="submit" className="btn btn-primary d-flex m-auto">Save</button>
+                        <div className="d-grid gap-2">
+                            <button type="submit" className="btn btn-primary">Save</button>
+                            <Link to="/" className="mx-2">Or back to contact</Link>
+                        </div>
                     </fieldset>
                 </form>
 
