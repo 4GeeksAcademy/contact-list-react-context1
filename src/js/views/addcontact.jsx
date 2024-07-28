@@ -3,17 +3,14 @@ import { Context } from "../store/appContext";
 import { Link, useNavigate } from "react-router-dom";
 
 
-
 const AddContact = () => {
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [phone, setPhone] = useState("")
     const [address, setAddress] = useState("")
 
-
     const { actions } = useContext(Context)
     const navigate = useNavigate()
-
 
     let handleSubmit = (e) => {
         e.preventDefault();
@@ -24,11 +21,7 @@ const AddContact = () => {
         }
         actions.postContacto(name, phone, email, address)
         navigate("/")
-
     }
-
-
-
 
     return (
 

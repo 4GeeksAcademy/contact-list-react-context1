@@ -4,11 +4,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 			contacts: []
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
-			exampleFunction: () => {
-				getActions().changeColor(0, "green");
-			},
-
 			crearUsuario: () => {
 				fetch('https://playground.4geeks.com/contact/agendas/pablocirus89', {
 					method: "POST",
@@ -20,7 +15,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then((data) => console.log(data))
 					.catch((error) => console.log(error))
 			},
-
 
 			listarContactos: () => {
 				fetch('https://playground.4geeks.com/contact/agendas/pablocirus89/contacts', {
@@ -64,7 +58,6 @@ const getState = ({ getStore, getActions, setStore }) => {
 					})
 					.then((data) => {
 						if (data) {
-							/* setStore({ contacts: store.contacts.concat(data) }) */
 							console.log(data);
 						}
 					})
@@ -90,7 +83,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 						throw new Error('Network response was not ok.');
 					})
 					.catch((error) => console.log(error));
-					getActions().listarContactos()
+				getActions().listarContactos()
 			},
 
 			editarContacto: (name, phone, email, address, id) => {
@@ -110,20 +103,16 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then((resp) => {
 						if (resp.ok) {
 							return resp.json()
-						} 
+						}
 					})
 					.then((data) => {
 						if (data) {
-							/* setStore({ contacts: store.contacts.concat(data) }) */
 							console.log(data);
 						}
 					})
 					.catch((error) => console.log(error))
-					getActions().listarContactos()
+				getActions().listarContactos()
 			},
-
-
-
 
 		}
 	};

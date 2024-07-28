@@ -3,12 +3,11 @@ import Card from "../component/card.jsx";
 import { Context } from "../store/appContext.js";
 import { ModalEditar } from "../component/modal_editar.jsx";
 
-
 export const Home = () => {
 
 	const { store, actions } = useContext(Context)
-	const [edit, setEdit]=useState({
-		showModal: false, 
+	const [edit, setEdit] = useState({
+		showModal: false,
 		item: {}
 	})
 
@@ -16,10 +15,8 @@ export const Home = () => {
 		actions.listarContactos()
 	}, [])
 
-
 	return (
 		<div className="conatiner-fluid p-4 m-auto row g-3">
-
 			<div className="col-m-3">
 				{store.contacts.length > 0 ? (
 					<ul className="list-group">
@@ -31,17 +28,17 @@ export const Home = () => {
 								id={contact.id}
 								name={contact.name}
 								phone={contact.phone}
-								email={contact.email}	
+								email={contact.email}
 								address={contact.address}
-								onEdit={()=>setEdit({showModal: true, item: contact})}
-								/>								
+								onEdit={() => setEdit({ showModal: true, item: contact })}
+							/>
 						))}
 					</ul>
 				) : ("")}
 			</div>
 			<ModalEditar
-			show= {edit.showModal}
-			item= {edit.item}
+				show={edit.showModal}
+				item={edit.item}
 			/>
 		</div>
 	);

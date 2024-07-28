@@ -3,12 +3,11 @@ import { Context } from "../store/appContext";
 
 export const Modal = (id) => {
 
-    const { store, actions } = useContext(Context)
+    const { actions } = useContext(Context)
 
 	useEffect(() => {
 		actions.deleteContacto()
 	}, [])
-
 
     return (
         <div className="modal" id={"Modal"+id} tabIndex="-1">

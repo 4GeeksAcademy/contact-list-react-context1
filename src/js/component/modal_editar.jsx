@@ -3,14 +3,12 @@ import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 
 
-
 export const ModalEditar = ({ item }) => {
     const [name, setName] = useState("")
     const [email, setEmail] = useState("")
     const [phone, setPhone] = useState("")
     const [address, setAddress] = useState("")
     const [id, setId] = useState("")
-
 
     const { actions } = useContext(Context)
     let handleSubmit = (e) => {
@@ -28,12 +26,6 @@ export const ModalEditar = ({ item }) => {
 
     return (
         <div>
-
-            {/*  <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Launch demo modal
-            </button>
- */}
-
             <div className="modal fade" id="modalEditar" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
