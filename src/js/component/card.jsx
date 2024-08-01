@@ -4,6 +4,10 @@ import { Modal } from "../views/modal.jsx";
 
 function Card({ name, phone, email, address, id, onEdit }) {
     const { actions } = useContext(Context)
+    function borrar(id) {
+        actions.deleteContacto(id)
+        actions.listarContactos()
+    }
 
     return (
         <div className="card mb-3 border border-secondary border-2">
@@ -22,7 +26,7 @@ function Card({ name, phone, email, address, id, onEdit }) {
                             <button type="button" className="btn btn-outline-black" data-bs-toggle="modal" data-bs-target="#modalEditar" onClick={() => onEdit()}>
                                 <i className="fa fa-pen"></i>
                             </button>
-                            <button className="btn btn-outline-black" onClick={() => actions.deleteContacto(id)}>
+                            <button className="btn btn-outline-black" onClick={() =>borrar(id)}>
                                 <i className="fa fa-trash"></i>
                             </button>
                         </div>

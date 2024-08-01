@@ -34,7 +34,7 @@ export const Home = () => {
 							/>
 						))}
 					</ul>
-				) : ("")}
+				) : (<p>No existen contactos</p>)}
 			</div>
 			<ModalEditar
 				show={edit.showModal}

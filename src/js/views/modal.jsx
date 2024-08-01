@@ -5,10 +5,6 @@ export const Modal = (id) => {
 
     const { actions } = useContext(Context)
 
-	useEffect(() => {
-		actions.deleteContacto()
-	}, [])
-
     return (
         <div className="modal" id={"Modal"+id} tabIndex="-1">
             <div className="modal-dialog">

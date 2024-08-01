@@ -24,6 +24,10 @@ const getState = ({ getStore, getActions, setStore }) => {
 					}
 				})
 					.then((resp) => {
+						console.log(resp);
+						if(resp.status == 404){
+							getActions().crearUsuario()
+						}
 						if (resp.ok) {
 							return resp.json();
 						}
@@ -75,9 +79,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then((resp) => {
 						if (resp.ok) {
 							// Filtrar el array de contactos para eliminar el contacto con el ID proporcionado
-							const newArray = contacts.filter(item => item.id !== id);
+							const newArray = getStore().contacts.filter(item => item.id !== id);
 							// Actualizar el estado con el nuevo array de contactos
-							setContacts(newArray);
+							setStore({contacts:newArray});
 							return resp.json();
 						}
 						throw new Error('Network response was not ok.');
