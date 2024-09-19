@@ -20,12 +20,20 @@ module.exports = {
           use: ['babel-loader']
         },
         {
-          test: /\.(css)$/, use: [{
-              loader: "style-loader" // creates style nodes from JS strings
-          }, {
-              loader: "css-loader" // translates CSS into CommonJS
-          }]
-        }, //css only files
+          test: /\.(css)$/,
+          use: [
+            {
+              loader: "style-loader", // crea nodos de estilo a partir de strings JS
+            },
+            {
+              loader: "css-loader", // traduce CSS en CommonJS
+            },
+            {
+              loader: "postcss-loader", // procesa los archivos CSS con PostCSS
+            },
+          ],
+        },
+        
         {
           test: /\.(png|svg|jpg|gif|jpeg|webp)$/, use: {
             loader: 'file-loader',
